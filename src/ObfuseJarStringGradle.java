@@ -1,15 +1,28 @@
 import com.OooOO0OO;
+
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
-import visitor.ClassVisitorFactory;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
+
+import visitor.ClassVisitorFactory;
 
 /**
  * Created by qtfreet on 2017/3/14.
@@ -26,7 +39,7 @@ public class ObfuseJarStringGradle {
             System.exit(0);
             return;
         }
-        byte b[] = readClass();
+
         String module = args[0];
         String variant = args[1];
         if (variant == null) {
@@ -45,8 +58,12 @@ public class ObfuseJarStringGradle {
         for (String path : filelist) {
             processFile(path);
         }
-        String encFilePath = variant + separator + encryptFile;
-        write(encFilePath, b);
+
+        if ("app".equals(module)) {
+            String encFilePath = variant + separator + encryptFile;
+            byte b[] = readClass();
+            write(encFilePath, b);
+        }
         System.err.println("task completed");
     }
 

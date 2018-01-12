@@ -1,0 +1,60 @@
+apply plugin: 'java-library'
+
+tasks.withType(org.gradle.api.tasks.compile.JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+//            exclude 'src/main/**'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation files('libs/asm-all-5.2.jar')
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+
+def versionModify = "1.0"
+
+def destDir = file('./')
+def finalName = "hsaeObfuscateString_V$versionModify"
+
+//This will result in [module_name]/build/libs/[module_name].jar file.
+jar {
+    manifest {
+        attributes "Main-Class": "ObfuseJarStringGradle"
+    }
+
+    //include dependent libraries in archive.
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    destinationDir destDir
+    includeEmptyDirs false
+
+    exclude 'com/hsae/**'
+    baseName finalName
+}
+
+task rmPreJar(type: Delete) {
+    delete file("${destDir}/${finalName}.jar")
+}
+
+task makeJar(type: GradleBuild) {
+    doFirst {
+        println("start to make final Jar...")
+    }
+    doLast {
+        println("makeJar completed!")
+    }
+    tasks = ['rmPreJar', 'clean', 'build']
+}
