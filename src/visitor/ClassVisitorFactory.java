@@ -1,6 +1,5 @@
 package visitor;
 
-import com.OooOO0OO;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -18,13 +17,20 @@ public final class ClassVisitorFactory {
     }
 
     public static ClassVisitor create(String className, ClassWriter cw) {
-        if (OooOO0OO.class.getName().replace('.', '/').equals(className)) {
+        if (WhiteLists.inWhiteList(className, WhiteLists.FLAG_CLASS)) {
+            return createEmpty(cw);
+        } else if (WhiteLists.inWhiteList(className, WhiteLists.FLAG_PACKAGE)) {
+            return new StringFieldClassVisitor(cw);
+        } else {
+            return createEmpty(cw);
+        }
+        /*if (OooOO0OO.class.getName().replace('.', '/').equals(className)) {
             return createEmpty(cw);
         }
         if (WhiteLists.inWhiteList(className, WhiteLists.FLAG_PACKAGE) || WhiteLists.inWhiteList(className, WhiteLists.FLAG_CLASS)) {
             return createEmpty(cw);
         }
-        return new StringFieldClassVisitor(cw);
+        return new StringFieldClassVisitor(cw);*/
     }
 
     public static ClassVisitor createEmpty(ClassWriter cw) {

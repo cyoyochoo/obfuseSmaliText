@@ -23,6 +23,7 @@ import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 import visitor.ClassVisitorFactory;
+import visitor.WhiteLists;
 
 /**
  * Created by qtfreet on 2017/3/14.
@@ -34,7 +35,7 @@ public class ObfuseJarStringGradle {
     private static List<String> filelist = new ArrayList();
 
     public static void main(String[] args) throws IOException {
-        if (args.length < 2) {
+        if (args.length < 3) {
             System.out.println("params [module] [variant]");
             System.exit(0);
             return;
@@ -42,6 +43,10 @@ public class ObfuseJarStringGradle {
 
         String module = args[0];
         String variant = args[1];
+        for (int i = 2, j = args.length; i < j; i++) {
+            WhiteLists.addWhiteList(args[i], WhiteLists.FLAG_PACKAGE);
+        }
+
         if (variant == null) {
             System.out.println("variant not detected; try " + PARAMS_ORDER);
             System.exit(0);

@@ -22,7 +22,7 @@ sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
 
-def versionModify = "1.0"
+def versionModify = "2.0"
 
 def destDir = file('./')
 def finalName = "hsaeObfuscateString_V$versionModify"

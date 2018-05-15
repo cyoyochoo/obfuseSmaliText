@@ -21,7 +21,7 @@ public final class WhiteLists {
 
     static {
         // default packages in white list.
-        addWhiteList("android.support", FLAG_PACKAGE);
+        /*addWhiteList("android.support", FLAG_PACKAGE);
         addWhiteList("com.google", FLAG_PACKAGE);
         addWhiteList("com.facebook", FLAG_PACKAGE);
         addWhiteList("com.baidu", FLAG_PACKAGE);
@@ -32,7 +32,7 @@ public final class WhiteLists {
         addWhiteList("com.qq", FLAG_PACKAGE);
         addWhiteList("mozilla", FLAG_PACKAGE);
         addWhiteList("okhttp3", FLAG_PACKAGE);
-        addWhiteList("okio", FLAG_PACKAGE);
+        addWhiteList("okio", FLAG_PACKAGE);*/
         //   addWhiteList("org", FLAG_PACKAGE);
 
         // default classes short name in white list.
