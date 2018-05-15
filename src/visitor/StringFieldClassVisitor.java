@@ -190,6 +190,7 @@ public class StringFieldClassVisitor extends ClassVisitor {
                                     return;
                                 }
                             }
+                            // local variables
                             encode(super.mv, (String) cst);
                             return;
                         }
