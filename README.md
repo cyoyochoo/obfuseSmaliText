@@ -16,8 +16,7 @@ allprojects {
                             task.outputs.files.last().path,
                             //指定要混淆的包名
                             "xxx.pkg",
-                            //指定要混淆的包名
-                            "xxx.pkg"
+                            ...
                     ]
                     jvmArgs '-Dfile.encoding=UTF-8'
                 }
@@ -26,4 +25,20 @@ allprojects {
     }
 }
 ```
-
+* 指定不混淆字符串的类
+  * 添加com.qtfreet.lib.annotation.StringIgnore注解即可
+  ``` java
+    @StringIgnore
+    public class Ignore {
+        ...
+    }
+    ```
+  * 使用com.qtfreet.lib.annotation.StringIgnore注解需要依赖hsaeObfuscateString_V2.0.jar
+  ``` java
+    //注意：只是参加编译，不要打包到apk中
+    compileOnly files('libs/hsaeObfuscateString_V2.0.jar')
+  ```
+  * proguard
+  ``` java
+    -keep class com.qtfreet.lib.annotation.StringIgnore
+  ```
