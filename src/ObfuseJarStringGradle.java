@@ -1,5 +1,4 @@
 import com.OooOO0OO;
-import com.qtfreet.lib.annotation.StringIgnore;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
@@ -67,19 +66,17 @@ public class ObfuseJarStringGradle {
 
         if ("app".equals(module)) {
             String encFilePath = variant + separator + encryptFile;
-            byte b[] = readClass(OooOO0OO.class, encryptFile);
+            byte b[] = readClass();
             write(encFilePath, b);
-            String name = StringIgnore.class.getName().replace(".", "/") + ".class";
-            write(variant + separator + name, readClass(StringIgnore.class, name));
         }
         System.err.println("task completed");
     }
 
 
-    private static byte[] readClass(Class cl, String name) {
+    private static byte[] readClass() {
         InputStream in = null;
         try {
-            in = cl.getClassLoader().getResourceAsStream(name);
+            in = OooOO0OO.class.getClassLoader().getResourceAsStream(encryptFile);
             int len = in.available();
             byte[] b = new byte[len];
             in.read(b);

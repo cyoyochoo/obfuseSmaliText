@@ -16,7 +16,7 @@ import java.util.UUID;
 
 public class StringFieldClassVisitor extends ClassVisitor {
 
-    private static final String IGNORE_ANNOTATION = "Lcom/qtfreet/lib/annotation/StringIgnore;";
+    private static final String IGNORE_ANNOTATION = "Lcom/hsae/yoyochoo/annotation/StringIgnore;";
     private static final String Xor_FLAG = OooOO0OO.class.getName().replace('.', '/');
 
     private boolean isClInitExists;

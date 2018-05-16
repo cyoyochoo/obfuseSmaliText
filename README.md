@@ -27,21 +27,20 @@ forked from: https://github.com/Qrilee/obfuseSmaliText
     }
     ```
 * 指定不混淆字符串的类
-  * 添加com.qtfreet.lib.annotation.StringIgnore注解即可
+  * 添加**com.hsae.yoyochoo.annotation.StringIgnore**注解即可
   ``` java
     @StringIgnore
     public class Ignore {
         ...
     }
     ```
-  * 使用com.qtfreet.lib.annotation.StringIgnore注解需要依赖hsaeObfuscateString_V2.0.jar
+  * 使用**com.hsae.yoyochoo.annotation.StringIgnore**注解需要依赖**StringIgnore.jar**
   ``` java
-    //注意：只是参加编译，不要打包到apk中
-    compileOnly files('libs/hsaeObfuscateString_V2.0.jar')
+    implementation files('libs/StringIgnore.jar')
   ```
   * proguard
   ``` java
-    -keep class com.qtfreet.lib.annotation.StringIgnore
+    -keep class com.hsae.yoyochoo.annotation.StringIgnore
   ```
   
   ## 更新日志
