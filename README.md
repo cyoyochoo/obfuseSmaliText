@@ -1,8 +1,7 @@
 ## Android gradle plugin 3.0+ 多模块常量字符串混淆
 forked from: https://github.com/Qrilee/obfuseSmaliText
 #### 使用方法
-* 将**hsaeObfuscateString_V2.0.jar**文件放在工程根目录，在根目录**build.gradle**文件中添加如下：
-  
+* 将 **_hsaeObfuscateString_V2.0.jar_** 文件放在工程根目录，在根目录 **_build.gradle_** 文件中添加如下：
   ``` java 
     allprojects {
         ...
@@ -40,9 +39,9 @@ forked from: https://github.com/Qrilee/obfuseSmaliText
     implementation files('libs/StringIgnore.jar')
   ```
   
-  ## 更新日志
-  #### V2.0
-  * 新增指定**包名**或**类**中字符串混淆
-  * 新增指定类下字符串不混淆（注解标识）
-  #### V1.0
-  * 新增多模块支持
+## 更新日志
+#### V2.0
+* 新增指定**包名**或**类**中字符串混淆
+* 新增指定类下字符串不混淆（注解标识）
+#### V1.0
+* 新增多模块支持
