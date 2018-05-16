@@ -72,7 +72,7 @@ public final class WhiteLists {
 
     private static boolean checkPackage(String name) {
         for (String packageName : PACKAGE_WHITE_LIST) {
-            if (name.startsWith(packageName + ".")) {
+            if (name.startsWith(packageName)) {
                 return true;
             }
         }

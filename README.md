@@ -15,8 +15,9 @@ forked from: https://github.com/Qrilee/obfuseSmaliText
                                 "../hsaeObfuscateString_V2.0.jar",
                                 task.project.name,
                                 task.outputs.files.last().path,
-                                //指定要混淆的包名
-                                "xxx.pkg",
+                                //指定要混淆的包名或类名
+                                "com.xxx", //混淆com.xxx包名下所有字符串
+                                "com.yyy.MainActivity", //混淆com.yyy.MainActivity类中所有字符串
                                 ...
                         ]
                         jvmArgs '-Dfile.encoding=UTF-8'
@@ -27,21 +28,21 @@ forked from: https://github.com/Qrilee/obfuseSmaliText
     }
     ```
 * 指定不混淆字符串的类
-  * 添加 **com.hsae.yoyochoo.annotation.StringIgnore** 注解即可
+  * 添加 **_com.hsae.yoyochoo.annotation.StringIgnore_** 注解即可
   ``` java
     @StringIgnore
     public class Ignore {
         ...
     }
     ```
-  * 使用 **com.hsae.yoyochoo.annotation.StringIgnore** 注解 需要依赖 **StringIgnore.jar**
+  * 使用 **_com.hsae.yoyochoo.annotation.StringIgnore_** 注解 需要依赖 **_StringIgnore.jar_**
   ``` java
     implementation files('libs/StringIgnore.jar')
   ```
   
   ## 更新日志
   #### V2.0
-  * 新增指定包名下字符串混淆
+  * 新增指定**包名**或**类**中字符串混淆
   * 新增指定类下字符串不混淆（注解标识）
   #### V1.0
   * 新增多模块支持
