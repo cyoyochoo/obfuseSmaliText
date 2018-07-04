@@ -6,7 +6,7 @@ forked from: https://github.com/Qrilee/obfuseSmaliText
     allprojects {
         ...
         tasks.whenTaskAdded {task->
-            if (task.name.contains('ReleaseJavaWithJavac')) {//Release版本开启混淆
+            if (task.name.equals('compileReleaseJavaWithJavac')) {//Release版本开启混淆
                 task.doLast {
                     javaexec {
                         main = "-jar"
