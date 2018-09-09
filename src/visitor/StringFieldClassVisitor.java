@@ -97,7 +97,7 @@ public class StringFieldClassVisitor extends ClassVisitor {
 
         MethodVisitor mv = super.visitMethod(access, name, desc, signature, exceptions);
         if (mv != null && !mIgnoreClass) {
-            if ("<clinit>".equals(name)) {
+            if ("<clinit>".equals(name)) {// 处理静态成员变量
                 isClInitExists = true;
                 // If clinit exists meaning the static fields (not final) would have be inited here.
                 mv = new MethodVisitor(Opcodes.ASM5, mv) {
@@ -155,7 +155,7 @@ public class StringFieldClassVisitor extends ClassVisitor {
                     }
                 };
 
-            } else if ("<init>".equals(name)) {
+            } else if ("<init>".equals(name)) {// 处理成员变量
                 // Here init final(not static) and normal fields
                 mv = new MethodVisitor(Opcodes.ASM5, mv) {
                     @Override
@@ -168,7 +168,7 @@ public class StringFieldClassVisitor extends ClassVisitor {
                         }
                     }
                 };
-            } else {
+            } else {// 处理局部变量
                 mv = new MethodVisitor(Opcodes.ASM5, mv) {
 
                     @Override
